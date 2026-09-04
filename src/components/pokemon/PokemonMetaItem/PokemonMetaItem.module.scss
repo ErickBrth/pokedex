@@ -14,7 +14,9 @@
 
 .metaValue {
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.3;
   color: $text-white-soft;
+  display: flex;
+  flex-direction: column;
 }
