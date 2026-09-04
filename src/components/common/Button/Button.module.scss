@@ -1,6 +1,5 @@
 @use '../../../styles/variables' as *;
 
-// --- Base ---
 .btn {
   font-family: inherit;
   border: none;
@@ -26,8 +25,6 @@
   }
 }
 
-// --- Variant: icon ---
-// Transparent background, used for close & navigation arrow buttons
 .icon {
   color: $text-muted;
 
@@ -37,8 +34,6 @@
   }
 }
 
-// --- Variant: card ---
-// Card-shaped pressable button, used for evolution cards
 .card {
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: $radius-sm;
@@ -47,7 +42,7 @@
   color: $text-white;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: scale(1.03);
     background-color: rgba(255, 255, 255, 0.35);
   }
 

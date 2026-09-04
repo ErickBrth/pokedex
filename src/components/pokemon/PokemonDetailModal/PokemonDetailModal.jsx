@@ -31,13 +31,15 @@ export function PokemonDetailModal({
       aria-modal="true"
     >
       <div className={styles.modalWrapper} onClick={(e) => e.stopPropagation()}>
-        <IconButton 
-          className={styles.closeBtn} 
-          onClick={onClose}
-          ariaLabel="Close"
-        >
-          <CloseIcon size={28} />
-        </IconButton>
+        <div className={styles.headerRow}>
+          <IconButton 
+            className={styles.closeBtn} 
+            onClick={onClose}
+            ariaLabel="Close"
+          >
+            <CloseIcon size={28} />
+          </IconButton>
+        </div>
 
         {onPrevious && (
           <IconButton

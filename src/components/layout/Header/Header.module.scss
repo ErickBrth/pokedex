@@ -1,3 +1,5 @@
+@use '../../../styles/variables' as *;
+
 .brandHeader {
   display: flex;
   flex-direction: column;
@@ -8,7 +10,7 @@
   .logoCircle {
     width: 72px;
     height: 72px;
-    border-radius: 50%;
+    border-radius: $radius-full;
     margin-bottom: 1.25rem;
 
     .logoSvg {
@@ -20,15 +22,14 @@
   .companyName {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #ffffff;
-    letter-spacing: -0.2px;
+    color: $text-white;
     margin-bottom: 0.25rem;
   }
 
   .challengeSubtitle {
     font-size: 1.15rem;
     font-weight: 400;
-    color: #666666;
+    color: $text-muted-dark;
     letter-spacing: 0.2px;
   }
 }

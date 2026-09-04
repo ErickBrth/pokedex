@@ -1,12 +1,5 @@
 import styles from './Button.module.scss'
 
-/**
- * Unified Button component.
- *
- * Variants:
- *  - "icon"  → transparent icon-only button (close, nav arrows)
- *  - "card"  → pressable card-shaped button (evolution cards)
- */
 export function Button({
   variant = 'icon',
   onClick,
