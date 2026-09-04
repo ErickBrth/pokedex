@@ -1,0 +1,34 @@
+// styles/_variables.scss
+
+$font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+$orbital-orange: #f39121;
+$orbital-amber: #ffc904;
+$orbital-dark: #181818;
+$orbital-gray-bg: #f7f9fc;
+$orbital-border: #e9ecef;
+
+$bg-main: #f5f7fb;
+$bg-surface: #ffffff;
+$text-main: #2b3137;
+$text-muted: #6a737d;
+$text-light: #959da5;
+
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 6px 20px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+$shadow-card-hover: 0 14px 28px rgba(0, 0, 0, 0.16);
+
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-full: 9999px;
+$transition-fast: 0.18s ease-in-out;
+$transition-base: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
