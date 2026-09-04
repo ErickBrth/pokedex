@@ -1,4 +1,5 @@
 import { capitalize } from '../../../utils/formatters'
+import { PokemonSpriteImage } from '../PokemonSpriteImage/PokemonSpriteImage'
 import styles from './EvolutionList.module.scss'
 
 export function EvolutionList({ 
@@ -26,10 +27,11 @@ export function EvolutionList({
               }}
               aria-label={`Select evolution ${evo.name}`}
             >
-              <img
+              <PokemonSpriteImage
                 src={evo.sprite}
                 alt={evo.name}
                 className={styles.evoImage}
+                pixelated
               />
               <span className={styles.evoName}>{capitalize(evo.name)}</span>
             </button>

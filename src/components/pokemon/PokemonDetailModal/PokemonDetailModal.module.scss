@@ -153,38 +153,6 @@
   }
 }
 
-.metaItem {
-  display: flex;
-  flex-direction: column;
-
-  .metaLabel {
-    font-size: 0.85rem;
-    font-weight:700;
-    letter-spacing: 1px;
-    margin-bottom: 0.20rem;
-  }
-
-  .metaValue {
-    font-size: 0.8rem;
-    font-weight: 400;
-    line-height: 1.3;
-    color: #ffffffcc;
-  }
-
-  .abilities {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-
-    .abilityText {
-      font-size: 0.8rem;
-      font-weight: 400;
-      line-height: 1.3;
-      color: #ffffffcc;
-    }
-  }
-}
-
 .imageCol {
   position: relative;
   width: 280px;
@@ -200,8 +168,6 @@
     width: 380px;
     max-width: 380px;
     filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
-    user-select: none;
-    pointer-events: none;
   }
 
   @include mobile {

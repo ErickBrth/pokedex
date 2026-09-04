@@ -1,4 +1,4 @@
-import { capitalize } from '../../../utils/formatters'
+import { PokemonSpriteImage } from '../PokemonSpriteImage/PokemonSpriteImage'
 import styles from './PokemonCard.module.scss'
 
 export function PokemonCard({ pokemon, isSelected = false, onClick }) {
@@ -9,7 +9,7 @@ export function PokemonCard({ pokemon, isSelected = false, onClick }) {
       onClick={() => onClick(pokemon)}
       tabIndex={0}
       role="button"
-      aria-label={pokemon.name}
+      aria-label={pokemon.displayName}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault()
@@ -18,11 +18,11 @@ export function PokemonCard({ pokemon, isSelected = false, onClick }) {
       }}
     >
       <div className={styles.imageWrapper}>
-        <img
-          src={pokemon.sprites.animated || pokemon.sprites.frontDefault || pokemon.sprites.artwork}
-          alt={pokemon.name}
+        <PokemonSpriteImage
+          src={pokemon.defaultSprite}
+          alt={pokemon.displayName}
           className={styles.pokemonImage}
-          loading="lazy"
+          pixelated
         />
       </div>
 
@@ -31,7 +31,7 @@ export function PokemonCard({ pokemon, isSelected = false, onClick }) {
           className={styles.nameLabel}
           style={pokemon.colorName ? { color: pokemon.colorName } : undefined}
         >
-          {capitalize(pokemon.name)}
+          {pokemon.displayName}
         </span>
       )}
     </article>

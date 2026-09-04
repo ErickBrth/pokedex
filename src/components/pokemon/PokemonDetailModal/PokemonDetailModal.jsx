@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
-import { formatPokemonId, formatHeight, formatWeight, capitalize } from '../../../utils/formatters'
 import { IconButton } from '../../common/IconButton/IconButton'
 import { CloseIcon, ChevronLeftIcon, ChevronRightIcon } from '../../common/Icons/Icons'
 import { EvolutionList } from '../EvolutionList/EvolutionList'
+import { PokemonMetaItem } from '../PokemonMetaItem/PokemonMetaItem'
+import { PokemonSpriteImage } from '../PokemonSpriteImage/PokemonSpriteImage'
 import styles from './PokemonDetailModal.module.scss'
 
 export function PokemonDetailModal({ 
@@ -67,41 +68,35 @@ export function PokemonDetailModal({
         >
           <div className={styles.topSection}>
             <div className={styles.content}>
-              <span className={styles.number}>{formatPokemonId(pokemon.id)}</span>
-              <h2 className={styles.name}>{capitalize(pokemon.name)}</h2>
+              <span className={styles.number}>{pokemon.formattedId}</span>
+              <h2 className={styles.name}>{pokemon.displayName}</h2>
               {pokemon.genus && (
                 <p className={styles.genus}>{pokemon.genus}</p>
               )}
 
               <div className={styles.metaGrid}>
-                <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>HEIGHT</span>
-                  <span className={styles.metaValue}>{formatHeight(pokemon.height)}</span>
-                </div>
+                <PokemonMetaItem label="HEIGHT">
+                  {pokemon.formattedHeight}
+                </PokemonMetaItem>
 
-                <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>WEIGHT</span>
-                  <span className={styles.metaValue}>{formatWeight(pokemon.weight)}</span>
-                </div>
+                <PokemonMetaItem label="WEIGHT">
+                  {pokemon.formattedWeight}
+                </PokemonMetaItem>
 
-                <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>ABILITIES</span>
-                  <div className={styles.abilities}>
-                    {pokemon.abilities.map((ability, idx) => (
-                      <span key={`${ability}-${idx}`} className={styles.abilityText}>
-                        {ability}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <PokemonMetaItem label="ABILITIES">
+                  {pokemon.abilities.map((ability, idx) => (
+                    <span key={`${ability}-${idx}`}>{ability}</span>
+                  ))}
+                </PokemonMetaItem>
               </div>
             </div>
 
             <div className={styles.imageCol}>
-              <img
-                src={pokemon.sprites.artwork || pokemon.sprites.frontDefault}
-                alt={pokemon.name}
+              <PokemonSpriteImage
+                src={pokemon.heroArtwork}
+                alt={pokemon.displayName}
                 className={styles.pokemonHero}
+                loading="eager"
               />
             </div>
           </div>
