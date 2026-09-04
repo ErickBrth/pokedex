@@ -5,8 +5,8 @@
   position: relative;
   width: 140px;
   height: 140px;
-  background-color: #212121;
-  border-radius: 4px;
+  background-color: $bg-card;
+  border-radius: $radius-xs;
   border: 1.5px solid transparent;
   display: flex;
   flex-direction: column;
@@ -14,16 +14,16 @@
   justify-content: center;
   cursor: pointer;
   outline: none;
-  transition: all 0.2s ease;
+  transition: all $transition-base;
   padding: 0.5rem;
 
   &:hover {
-    background-color: #262626;
+    background-color: $bg-card-hover;
   }
 
   &.selected {
-    border-color: #f99e1b;
-    background-color: #212121;
+    border-color: $accent-primary;
+    background-color: $bg-card;
   }
 }
 
@@ -46,6 +46,6 @@
   font-weight: 600;
   text-align: center;
   margin-top: 0.25rem;
-  color: #f99e1b;
+  color: $accent-primary;
   letter-spacing: 0.2px;
 }

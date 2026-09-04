@@ -1,9 +1,5 @@
 import styles from './PokemonSpriteImage.module.scss'
 
-/**
- * Atomic component for rendering a Pokemon sprite/image.
- * Centralizes image rendering logic (alt text, lazy loading, etc.)
- */
 export function PokemonSpriteImage({
   src,
   alt,

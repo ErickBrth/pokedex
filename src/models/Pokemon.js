@@ -59,6 +59,29 @@ export class Pokemon {
     return this.sprites.artwork || this.sprites.frontDefault || ''
   }
 
+  belongsToFamily(target) {
+    if (!target) return false
+    const targetId = typeof target === 'object' ? target.id : Number(target)
+    const targetName = (typeof target === 'object' ? target.name : String(target)).toLowerCase()
+
+    if (this.id === targetId || this.name === targetName) {
+      return true
+    }
+
+    const inCurrentEvolutions = this.evolutions.some(
+      evo => evo.id === targetId || evo.name.toLowerCase() === targetName
+    )
+    if (inCurrentEvolutions) return true
+
+    if (typeof target === 'object' && Array.isArray(target.evolutions)) {
+      return target.evolutions.some(
+        evo => evo.id === this.id || evo.name.toLowerCase() === this.name
+      )
+    }
+
+    return false
+  }
+
   /**
    * Factory method to build a validated Pokemon instance from raw PokeAPI responses.
    */

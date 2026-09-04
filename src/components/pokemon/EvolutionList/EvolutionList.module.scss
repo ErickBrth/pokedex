@@ -1,3 +1,5 @@
+@use '../../../styles/variables' as *;
+
 .evolutionsSection {
   display: flex;
   flex-direction: column;
@@ -20,28 +22,14 @@
   flex-wrap: wrap;
 }
 
+// .evoCard dimensions — Button.module.scss handles bg, hover, border-radius
 .evoCard {
   width: 130px;
   height: 130px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: none;
-
-  &:hover {
-    transform: translateY(-2px);
-    background-color: rgba(255, 255, 255, 0.35);
-  }
 
   &.activeEvo {
-    background-color: #ffffff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: $text-white;
+    box-shadow: $shadow-sm;
 
     .evoName {
       color: var(--panel-color);
@@ -58,6 +46,6 @@
   .evoName {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #ffffff;
+    color: $text-white;
   }
 }

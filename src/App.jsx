@@ -56,6 +56,22 @@ export function App() {
     setActiveModalPokemon(pokemon)
   }
 
+  const handleNavigateSpecies = (direction) => {
+    if (!activeModalPokemon) return
+    const currentIndex = pokemons.findIndex(p => p.belongsToFamily(activeModalPokemon))
+    if (currentIndex === -1) return
+
+    const nextIndex = currentIndex + direction
+    if (nextIndex >= 0 && nextIndex < pokemons.length) {
+      const targetPokemon = pokemons[nextIndex]
+      setSelectedPokemon(targetPokemon)
+      setActiveModalPokemon(targetPokemon)
+    }
+  }
+
+  const handleNextSpecies = () => handleNavigateSpecies(1)
+  const handlePreviousSpecies = () => handleNavigateSpecies(-1)
+
   return (
     <div className={styles.page}>
       <Header />
@@ -87,22 +103,8 @@ export function App() {
         <PokemonDetailModal
           pokemon={activeModalPokemon}
           onClose={() => setActiveModalPokemon(null)}
-          onNext={() => {
-            const currentIndex = pokemons.findIndex(p => p.id === activeModalPokemon.id)
-            if (currentIndex !== -1 && currentIndex < pokemons.length - 1) {
-              const nextPokemon = pokemons[currentIndex + 1]
-              setSelectedPokemon(nextPokemon)
-              setActiveModalPokemon(nextPokemon)
-            }
-          }}
-          onPrevious={() => {
-            const currentIndex = pokemons.findIndex(p => p.id === activeModalPokemon.id)
-            if (currentIndex > 0) {
-              const prevPokemon = pokemons[currentIndex - 1]
-              setSelectedPokemon(prevPokemon)
-              setActiveModalPokemon(prevPokemon)
-            }
-          }}
+          onNext={handleNextSpecies}
+          onPrevious={handlePreviousSpecies}
           onSelectPokemon={async (name) => {
             const data = await getFullPokemonData(name)
             setSelectedPokemon(data)

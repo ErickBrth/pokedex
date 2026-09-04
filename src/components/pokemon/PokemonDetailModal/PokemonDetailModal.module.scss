@@ -7,7 +7,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: $overlay-bg;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -28,20 +28,7 @@
   position: absolute;
   top: -45px;
   right: -5px;
-  color: #777777;
-  cursor: pointer;
   z-index: 20;
-  transition: color 0.2s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
-
-  &:hover {
-    color: #ffffff;
-    transform: scale(1.1);
-  }
 
   @include mobile {
     top: -35px;
@@ -53,19 +40,10 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: #777777;
-  cursor: pointer;
   z-index: 20;
-  transition: color 0.2s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
 
   &:hover {
-    color: #ffffff;
-    transform: translateY(-50%) scale(1.15);
+    transform: translateY(-50%) scale(1.15) !important;
   }
 
   &.prevBtn {
@@ -88,11 +66,11 @@
 .panel {
   position: relative;
   width: 100%;
-  border-radius: 8px;
-  color: #ffffff;
+  border-radius: $radius-sm;
+  color: $text-white;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  box-shadow: $shadow-xl;
   padding: 2.5rem 3rem 2.5rem 3.5rem;
   overflow: visible;
 

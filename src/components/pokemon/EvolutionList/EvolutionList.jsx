@@ -1,4 +1,5 @@
 import { capitalize } from '../../../utils/formatters'
+import { Button } from '../../common/Button/Button'
 import { PokemonSpriteImage } from '../PokemonSpriteImage/PokemonSpriteImage'
 import styles from './EvolutionList.module.scss'
 
@@ -16,16 +17,16 @@ export function EvolutionList({
         {evolutions.map((evo) => {
           const isCurrent = evo.id === currentPokemonId
           return (
-            <button
+            <Button
               key={evo.id}
-              type="button"
+              variant="card"
               className={`${styles.evoCard} ${isCurrent ? styles.activeEvo : ''}`}
               onClick={() => {
                 if (!isCurrent && onSelectPokemon) {
                   onSelectPokemon(evo.name)
                 }
               }}
-              aria-label={`Select evolution ${evo.name}`}
+              ariaLabel={`Select evolution ${evo.name}`}
             >
               <PokemonSpriteImage
                 src={evo.sprite}
@@ -34,7 +35,7 @@ export function EvolutionList({
                 pixelated
               />
               <span className={styles.evoName}>{capitalize(evo.name)}</span>
-            </button>
+            </Button>
           )
         })}
       </div>
