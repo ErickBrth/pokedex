@@ -1,0 +1,26 @@
+.skeleton {
+  width: 140px;
+  height: 140px;
+  background-color: #212121;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #282828;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}

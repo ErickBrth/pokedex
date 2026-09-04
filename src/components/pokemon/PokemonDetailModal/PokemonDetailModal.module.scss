@@ -1,0 +1,283 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modalWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -45px;
+  right: -5px;
+  color: #777777;
+  cursor: pointer;
+  z-index: 20;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+  }
+
+  @include mobile {
+    top: -35px;
+    right: 0;
+  }
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777777;
+  cursor: pointer;
+  z-index: 20;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.15);
+  }
+
+  &.prevBtn {
+    left: -55px;
+
+    @include mobile {
+      left: -20px;
+    }
+  }
+
+  &.nextBtn {
+    right: -55px;
+
+    @include mobile {
+      right: -20px;
+    }
+  }
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  padding: 2.5rem 3rem 2.5rem 3.5rem;
+  overflow: visible;
+
+  @include mobile {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.topSection {
+  display: flex;
+  position: relative;
+  min-height: 220px;
+  margin-bottom: 2rem;
+
+  @include mobile {
+    flex-direction: column-reverse;
+  }
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+
+  .number {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+    opacity: 0.9;
+  }
+
+  .name {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .genus {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+  }
+}
+
+.metaGrid {
+  display: flex;
+  gap: 3rem;
+
+  @include mobile {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+
+  .metaLabel {
+    font-size: 0.85rem;
+    font-weight:700;
+    letter-spacing: 1px;
+    margin-bottom: 0.20rem;
+  }
+
+  .metaValue {
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #ffffffcc;
+  }
+
+  .abilities {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    .abilityText {
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #ffffffcc;
+    }
+  }
+}
+
+.imageCol {
+  position: relative;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+
+  .pokemonHero {
+    position: absolute;
+    right: -75px;
+    top: -55px;
+    width: 380px;
+    max-width: 380px;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+    user-select: none;
+    pointer-events: none;
+  }
+
+  @include mobile {
+    position: static;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    .pokemonHero {
+      position: static;
+      width: 200px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.evolutionsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  z-index: 2;
+}
+
+.evolutionsTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.evolutionsList {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.evoCard {
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+
+  &.activeEvo {
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    .evoName {
+      color: var(--panel-color);
+      font-weight: 700;
+    }
+  }
+
+  .evoImage {
+    max-width: 80px;
+    max-height: 80px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+  }
+
+  .evoName {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+}
