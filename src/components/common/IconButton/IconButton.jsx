@@ -1,20 +1,15 @@
-import styles from './IconButton.module.scss'
+import { Button } from '../Button/Button'
 
-export function IconButton({ 
-  onClick, 
-  ariaLabel, 
-  children, 
-  className = '', 
-  type = 'button' 
-}) {
+export function IconButton({ onClick, ariaLabel, children, className = '', type = 'button' }) {
   return (
-    <button
+    <Button
+      variant="icon"
       type={type}
-      className={`${styles.iconButton} ${className}`}
       onClick={onClick}
-      aria-label={ariaLabel}
+      ariaLabel={ariaLabel}
+      className={className}
     >
       {children}
-    </button>
+    </Button>
   )
 }
