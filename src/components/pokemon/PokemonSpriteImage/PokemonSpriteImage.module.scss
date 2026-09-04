@@ -1,0 +1,9 @@
+.sprite {
+  user-select: none;
+  pointer-events: none;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
+}
