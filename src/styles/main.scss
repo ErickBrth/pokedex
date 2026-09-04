@@ -8,8 +8,8 @@
 
 html, body {
   font-family: $font-family-base;
-  background-color: #1c1c1c;
-  color: #ffffff;
+  background-color: $bg-page;
+  color: $text-white;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
