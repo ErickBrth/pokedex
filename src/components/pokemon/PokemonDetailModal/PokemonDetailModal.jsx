@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
 import { formatPokemonId, formatHeight, formatWeight, capitalize } from '../../../utils/formatters'
+import { IconButton } from '../../common/IconButton/IconButton'
+import { CloseIcon, ChevronLeftIcon, ChevronRightIcon } from '../../common/Icons/Icons'
+import { EvolutionList } from '../EvolutionList/EvolutionList'
 import styles from './PokemonDetailModal.module.scss'
 
 export function PokemonDetailModal({ 
@@ -27,42 +30,32 @@ export function PokemonDetailModal({
       aria-modal="true"
     >
       <div className={styles.modalWrapper} onClick={(e) => e.stopPropagation()}>
-        <button 
-          type="button" 
+        <IconButton 
           className={styles.closeBtn} 
           onClick={onClose}
-          aria-label="Close"
+          ariaLabel="Close"
         >
-          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" strokeWidth="1.5" fill="none">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
+          <CloseIcon size={28} />
+        </IconButton>
 
         {onPrevious && (
-          <button
-            type="button"
+          <IconButton
             className={`${styles.navBtn} ${styles.prevBtn}`}
             onClick={onPrevious}
-            aria-label="Previous Pokemon"
+            ariaLabel="Previous Pokemon"
           >
-            <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" strokeWidth="1.5" fill="none">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
+            <ChevronLeftIcon size={36} />
+          </IconButton>
         )}
 
         {onNext && (
-          <button
-            type="button"
+          <IconButton
             className={`${styles.navBtn} ${styles.nextBtn}`}
             onClick={onNext}
-            aria-label="Next Pokemon"
+            ariaLabel="Next Pokemon"
           >
-            <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" strokeWidth="1.5" fill="none">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
+            <ChevronRightIcon size={36} />
+          </IconButton>
         )}
 
         <div 
@@ -83,12 +76,12 @@ export function PokemonDetailModal({
               <div className={styles.metaGrid}>
                 <div className={styles.metaItem}>
                   <span className={styles.metaLabel}>HEIGHT</span>
-                   <span className={styles.metaValue}>{formatHeight(pokemon.height)}</span>
+                  <span className={styles.metaValue}>{formatHeight(pokemon.height)}</span>
                 </div>
 
                 <div className={styles.metaItem}>
                   <span className={styles.metaLabel}>WEIGHT</span>
-                   <span className={styles.metaValue}>{formatWeight(pokemon.weight)}</span>
+                  <span className={styles.metaValue}>{formatWeight(pokemon.weight)}</span>
                 </div>
 
                 <div className={styles.metaItem}>
@@ -113,35 +106,11 @@ export function PokemonDetailModal({
             </div>
           </div>
 
-          {pokemon.evolutions && pokemon.evolutions.length > 0 && (
-            <div className={styles.evolutionsSection}>
-              <h3 className={styles.evolutionsTitle}>Evolutions</h3>
-              <div className={styles.evolutionsList}>
-                {pokemon.evolutions.map((evo) => {
-                  const isCurrent = evo.id === pokemon.id
-                  return (
-                    <button
-                      key={evo.id}
-                      type="button"
-                      className={`${styles.evoCard} ${isCurrent ? styles.activeEvo : ''}`}
-                      onClick={() => {
-                        if (!isCurrent && onSelectPokemon) {
-                          onSelectPokemon(evo.name)
-                        }
-                      }}
-                    >
-                      <img
-                        src={evo.sprite}
-                        alt={evo.name}
-                        className={styles.evoImage}
-                      />
-                      <span className={styles.evoName}>{capitalize(evo.name)}</span>
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-          )}
+          <EvolutionList
+            evolutions={pokemon.evolutions}
+            currentPokemonId={pokemon.id}
+            onSelectPokemon={onSelectPokemon}
+          />
         </div>
       </div>
     </div>
