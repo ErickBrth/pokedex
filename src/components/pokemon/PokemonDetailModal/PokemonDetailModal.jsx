@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { IconButton } from '../../common/IconButton/IconButton'
 import { CloseIcon, ChevronLeftIcon, ChevronRightIcon } from '../../common/Icons/Icons'
 import { EvolutionList } from '../EvolutionList/EvolutionList'
@@ -13,15 +13,50 @@ export function PokemonDetailModal({
   onPrevious,
   onSelectPokemon 
 }) {
+  const closeBtnRef = useRef(null)
+  const modalRef = useRef(null)
+
   useEffect(() => {
+    // Focus close button when modal opens for keyboard navigation
+    closeBtnRef.current?.focus?.()
+
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowRight' && onNext) onNext()
-      if (e.key === 'ArrowLeft' && onPrevious) onPrevious()
+      if (e.key === 'Escape') {
+        onClose()
+      } else if (e.key === 'ArrowRight' && onNext) {
+        onNext()
+      } else if (e.key === 'ArrowLeft' && onPrevious) {
+        onPrevious()
+      } else if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusableElements.length === 0) return
+
+        const firstElement = focusableElements[0]
+        const lastElement = focusableElements[focusableElements.length - 1]
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault()
+            lastElement.focus()
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault()
+            firstElement.focus()
+          }
+        }
+      }
     }
+
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [onClose, onNext, onPrevious])
+
+  const heroAltDescription = pokemon.genus
+    ? `Arte oficial de ${pokemon.displayName}, da espécie ${pokemon.genus}`
+    : `Arte oficial de ${pokemon.displayName}`
 
   return (
     <div 
@@ -29,13 +64,19 @@ export function PokemonDetailModal({
       onClick={onClose}
       role="dialog"
       aria-modal="true"
+      aria-labelledby="pokemon-detail-name"
+      ref={modalRef}
     >
-      <div className={styles.modalWrapper} onClick={(e) => e.stopPropagation()}>
+      <div 
+        className={styles.modalWrapper} 
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.headerRow}>
           <IconButton 
+            ref={closeBtnRef}
             className={styles.closeBtn} 
             onClick={onClose}
-            ariaLabel="Close"
+            ariaLabel={`Fechar detalhes de ${pokemon.displayName}`}
           >
             <CloseIcon size={28} />
           </IconButton>
@@ -45,7 +86,7 @@ export function PokemonDetailModal({
           <IconButton
             className={`${styles.navBtn} ${styles.prevBtn}`}
             onClick={onPrevious}
-            ariaLabel="Previous Pokemon"
+            ariaLabel="Pokémon anterior"
           >
             <ChevronLeftIcon size={36} />
           </IconButton>
@@ -55,7 +96,7 @@ export function PokemonDetailModal({
           <IconButton
             className={`${styles.navBtn} ${styles.nextBtn}`}
             onClick={onNext}
-            ariaLabel="Next Pokemon"
+            ariaLabel="Próximo Pokémon"
           >
             <ChevronRightIcon size={36} />
           </IconButton>
@@ -70,8 +111,12 @@ export function PokemonDetailModal({
         >
           <div className={styles.topSection}>
             <div className={styles.content}>
-              <span className={styles.number}>{pokemon.formattedId}</span>
-              <h2 className={styles.name}>{pokemon.displayName}</h2>
+              <span className={styles.number} aria-label={`Número de registro ${pokemon.formattedId}`}>
+                {pokemon.formattedId}
+              </span>
+              <h2 id="pokemon-detail-name" className={styles.name}>
+                {pokemon.displayName}
+              </h2>
               {pokemon.genus && (
                 <p className={styles.genus}>{pokemon.genus}</p>
               )}
@@ -96,7 +141,7 @@ export function PokemonDetailModal({
             <div className={styles.imageCol}>
               <PokemonSpriteImage
                 src={pokemon.heroArtwork}
-                alt={pokemon.displayName}
+                alt={heroAltDescription}
                 className={styles.pokemonHero}
                 loading="eager"
               />

@@ -26,11 +26,14 @@ export function EvolutionList({
                   onSelectPokemon(evo.name)
                 }
               }}
-              ariaLabel={`Select evolution ${evo.name}`}
+              ariaLabel={isCurrent ? `Evolução atual: ${capitalize(evo.name)}` : `Ver evolução ${capitalize(evo.name)}`}
             >
               <PokemonSpriteImage
                 src={evo.sprite}
-                alt={evo.name}
+                alt={isCurrent
+                  ? `${capitalize(evo.name)} — estágio atual da evolução`
+                  : `${capitalize(evo.name)} — próxima etapa da cadeia evolutiva`
+                }
                 className={styles.evoImage}
                 pixelated
               />
