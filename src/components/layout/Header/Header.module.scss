@@ -7,16 +7,12 @@
   margin-bottom: 4.5rem;
   text-align: center;
 
-  .logoCircle {
+  .logo {
     width: 72px;
     height: 72px;
     border-radius: $radius-full;
     margin-bottom: 1.25rem;
-
-    .logoSvg {
-      width: 72px;
-      height: 72px;
-    }
+    display: block;
   }
 
   .companyName {

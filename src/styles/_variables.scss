@@ -1,6 +1,4 @@
-// styles/_variables.scss
-
-$font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-base: 'Montserrat';
 
 $orbital-orange: #f39121;
 $orbital-amber:  #ffc904;
@@ -12,9 +10,9 @@ $bg-card-hover:  #262626;
 $bg-transparent: transparent;
 
 $text-white:     #ffffff;
-$text-muted:     #777777;
-$text-muted-dark:#666666;
-$text-white-soft: rgba(255, 255, 255, 0.8);  // #ffffffcc equivalent
+$text-muted:     #9e9e9e;
+$text-muted-dark:#8e8e8e;
+$text-white-soft: rgba(255, 255, 255, 0.85);
 $accent-primary: #f99e1b;
 
 $overlay-bg:     rgba(0, 0, 0, 0.85);
