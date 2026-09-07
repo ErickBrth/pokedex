@@ -1,8 +1,16 @@
+import { forwardRef } from 'react'
 import { Button } from '../Button/Button'
 
-export function IconButton({ onClick, ariaLabel, children, className = '', type = 'button' }) {
+export const IconButton = forwardRef(function IconButton({ 
+  onClick, 
+  ariaLabel, 
+  children, 
+  className = '', 
+  type = 'button' 
+}, ref) {
   return (
     <Button
+      ref={ref}
       variant="icon"
       type={type}
       onClick={onClick}
@@ -12,4 +20,4 @@ export function IconButton({ onClick, ariaLabel, children, className = '', type 
       {children}
     </Button>
   )
-}
+})
