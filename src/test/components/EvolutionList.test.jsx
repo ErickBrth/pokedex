@@ -21,7 +21,6 @@ describe('EvolutionList component', () => {
 
   it('renders evolution sprites with correct alt text', () => {
     render(<EvolutionList evolutions={evolutions} currentPokemonId={4} onSelectPokemon={vi.fn()} />)
-    // id 4 = charmander (current), others are next stages
     expect(screen.getByAltText('Charmander — estágio atual da evolução')).toBeInTheDocument()
     expect(screen.getByAltText('Charmeleon — próxima etapa da cadeia evolutiva')).toBeInTheDocument()
     expect(screen.getByAltText('Charizard — próxima etapa da cadeia evolutiva')).toBeInTheDocument()

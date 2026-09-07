@@ -75,8 +75,6 @@ describe('PokemonCard component', () => {
   it('is focusable via tabIndex', () => {
     const pokemon = createPokemon()
     render(<PokemonCard pokemon={pokemon} onClick={vi.fn()} />)
-    // native <button> elements do not have an explicit tabindex by default
-    // but are still keyboard-focusable — verify it is reachable via Tab
     expect(screen.getByRole('button', { name: 'Ver detalhes de Charmander' })).toBeInTheDocument()
   })
 })
