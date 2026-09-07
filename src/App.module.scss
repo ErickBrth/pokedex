@@ -32,3 +32,32 @@
     grid-template-rows: auto;
   }
 }
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+  color: $text-muted;
+
+  .errorMessage {
+    font-size: 1rem;
+    color: $text-white-soft;
+    max-width: 400px;
+  }
+
+  .retryBtn {
+    padding: 0.5rem 1.25rem;
+    background-color: $accent-primary;
+    color: $orbital-dark;
+    font-weight: 600;
+    border-radius: $radius-xs;
+    transition: opacity $transition-base;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
